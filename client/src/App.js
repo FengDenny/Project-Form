@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import { GlobalStyles } from "./styled-components/globalStyled";
 import { ModalProvider } from "styled-react-modal";
 import { FadingBackground } from "./styled-components/styled";
@@ -8,7 +8,7 @@ function App() {
   return (
     <ModalProvider backgroundComponent={FadingBackground}>
       <GlobalStyles />
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Route exact path='/' component={Home} />
       </Router>
     </ModalProvider>
