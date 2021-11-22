@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/projectform/static/js/main.165c0c05.chunk.js",
-    "main.js.map": "/projectform/static/js/main.165c0c05.chunk.js.map",
+    "main.js": "/projectform/static/js/main.791ed6ee.chunk.js",
+    "main.js.map": "/projectform/static/js/main.791ed6ee.chunk.js.map",
     "runtime-main.js": "/projectform/static/js/runtime-main.f0210050.js",
     "runtime-main.js.map": "/projectform/static/js/runtime-main.f0210050.js.map",
-    "static/js/2.66e62004.chunk.js": "/projectform/static/js/2.66e62004.chunk.js",
-    "static/js/2.66e62004.chunk.js.map": "/projectform/static/js/2.66e62004.chunk.js.map",
+    "static/js/2.fb5d8618.chunk.js": "/projectform/static/js/2.fb5d8618.chunk.js",
+    "static/js/2.fb5d8618.chunk.js.map": "/projectform/static/js/2.fb5d8618.chunk.js.map",
     "index.html": "/projectform/index.html",
-    "static/js/2.66e62004.chunk.js.LICENSE.txt": "/projectform/static/js/2.66e62004.chunk.js.LICENSE.txt"
+    "static/js/2.fb5d8618.chunk.js.LICENSE.txt": "/projectform/static/js/2.fb5d8618.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f0210050.js",
-    "static/js/2.66e62004.chunk.js",
-    "static/js/main.165c0c05.chunk.js"
+    "static/js/2.fb5d8618.chunk.js",
+    "static/js/main.791ed6ee.chunk.js"
   ]
 }
