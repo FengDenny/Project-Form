@@ -1,6 +1,6 @@
 {
-  "homepage": "https://FengDenny.github.io",
-  "name": "client",
+  "homepage": "https://FengDenny.github.io/projectform",
+  "name": "projectform",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
