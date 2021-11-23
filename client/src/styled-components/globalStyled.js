@@ -53,6 +53,7 @@ export const theme = {
   h1Top: "0",
   labelTop: "0",
   gridPadding: "25px 0 0 0;",
+  gridGap: "5px",
 };
 
 export const Container = styled.div`
@@ -151,7 +152,7 @@ export const GridTwo = styled.div`
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   padding: ${(props) => props.theme.gridPadding};
-  grid-gap: 5px;
+  grid-gap: ${(props) => props.theme.gridGap};
 `;
 
 export const HRLine = styled.hr`
