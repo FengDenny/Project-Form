@@ -7,6 +7,11 @@ const INITIAL_STATE = {
   email: "",
   country: "",
   states: "",
+  city: "",
+  services: "",
+  budget: "",
+  address: "",
+  zipcode: "",
 };
 
 const formReducer = (state = INITIAL_STATE, action) => {
@@ -27,6 +32,16 @@ const formReducer = (state = INITIAL_STATE, action) => {
       return { ...state, country: action.country };
     case "SET_USER_STATES":
       return { ...state, states: action.states };
+    case "SET_USER_CITY":
+      return { ...state, states: action.city };
+    case "SET_USER_SERVICES":
+      return { ...state, states: action.services };
+    case "SET_USER_BUDGET":
+      return { ...state, states: action.budget };
+    case "SET_USER_ADDRESS":
+      return { ...state, states: action.address };
+    case "SET_USER_ZIPCODE":
+      return { ...state, states: action.zipcode };
     default:
       return state;
   }
