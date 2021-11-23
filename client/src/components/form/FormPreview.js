@@ -222,7 +222,7 @@ export default function FormPreview(props) {
                   </SpanColor>
                 ) : (
                   <SpanColor>
-                    State: <PrimarySpan>{service.service}</PrimarySpan>
+                    Services: <PrimarySpan>{service.service}</PrimarySpan>
                   </SpanColor>
                 )}
               </Pragraph>
