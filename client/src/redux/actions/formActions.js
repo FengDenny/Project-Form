@@ -25,3 +25,27 @@ export const setUserCountry = (country) => {
 export const setUserStates = (states) => {
   return { type: "SET_USER_STATES", states };
 };
+
+export const setUserCity = (city) => {
+  return { type: "SET_USER_CITY", city };
+};
+
+export const setUserPhoneNumber = (phoneNumber) => {
+  return { type: "SET_USER_PHONE_NUMBER", phoneNumber };
+};
+
+export const setUserServices = (services) => {
+  return { type: "SET_USER_SERVICES", services };
+};
+
+export const setUserBudget = (budget) => {
+  return { type: "SET_USER_BUDGET", budget };
+};
+
+export const setUserAddress = (address) => {
+  return { type: "SET_USER_ADDRESS", address };
+};
+
+export const setUserZipCode = (zipcode) => {
+  return { type: "SET_USER_ZIPCODE", zipcode };
+};
