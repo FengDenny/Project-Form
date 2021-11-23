@@ -21,10 +21,13 @@ import {
   FormSubmission,
 } from "../../styled-components/styled";
 
-import { formInputCheck, inputBorderColor } from "./algorithms/FormAlgorithm";
+import { formInputCheck, formatPhoneNumber } from "./algorithms/FormAlgorithm";
 import ReCAPTCHA from "../form/formValidation/FormCaptcha";
 
 export default function FormLogic({
+  number,
+  setNumber,
+  numberError,
   lastName,
   setLastName,
   firstName,
@@ -66,9 +69,22 @@ export default function FormLogic({
   zipCode,
   setZipCode,
   zipCodeError,
+  feetError,
+  inchesError,
+  setFeet,
+  setInches,
+  feet,
+  inches,
+  services,
+  service,
+  setService,
+  budgets,
+  budget,
+  setBudget,
 }) {
   const firstRender = useRef(true);
   const [verified, setVerified] = useState(false);
+  const formatPhoneRef = useRef();
 
   useEffect(() => {
     if (firstRender.current) {
@@ -323,19 +339,6 @@ export default function FormLogic({
                   </SelectOptions>
                 ))}
               </FormSelect>
-              {/* 
-              {lastNameError && lastName && (
-                <FormLabel
-                  theme={{
-                    color: "var(--error)",
-                    fontSizeSM: "15px",
-                    marginTop: "7px",
-                    errorLabelWidth: "153px",
-                  }}
-                >
-                  {lastNameError}
-                </FormLabel>
-              )} */}
             </FormGroup>
             <FormGroup>
               <FormLabel htmlForm='zipcode' theme={{ fontSizeSM: "17px" }}>
@@ -369,7 +372,7 @@ export default function FormLogic({
           </GridTwo>
         </Card>
         <CardSpacer />
-        <SmallCard theme={{ maxWidth: "373px", height: "35vh" }}>
+        <SmallCard theme={{ maxWidth: "373px", height: "375px" }}>
           <GridTwo theme={{ gridPadding: "5px 0 0 0" }}>
             {/* Height */}
             <FormGroup>
@@ -377,14 +380,13 @@ export default function FormLogic({
                 Your Height <AsteriskSpan> (optional) </AsteriskSpan>
               </FormLabel>
               <FormInput
-                type='number'
+                type='text'
                 id='feet'
                 name='height'
-                placeholder='14'
-                min='0'
+                placeholder='5'
                 maxLength='2'
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={feet}
+                onChange={(e) => setFeet(e.target.value)}
                 theme={{
                   maxWidth: "152px",
                   formItemHeight: "32.97px",
@@ -399,19 +401,30 @@ export default function FormLogic({
                   color: "var( --light-gray-color)",
                 }}
               >
-                Feet
+                Feet {""}
+                {feetError && (
+                  <FormLabel
+                    theme={{
+                      color: "var(--error)",
+                      fontSizeSM: "15px",
+                      labelTop: "-1px",
+                      marginLeft: "45px",
+                    }}
+                  >
+                    {feetError}
+                  </FormLabel>
+                )}
               </FormLabel>
             </FormGroup>
             <FormGroup>
               <FormInput
-                type='number'
+                type='text'
                 id='inches'
                 name='inches'
-                placeholder='14'
-                min='0'
+                placeholder='5'
                 maxLength='2'
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={inches}
+                onChange={(e) => setInches(e.target.value)}
                 theme={{
                   maxWidth: "152px",
                   formItemHeight: "32.97px",
@@ -426,7 +439,19 @@ export default function FormLogic({
                   color: "var( --light-gray-color)",
                 }}
               >
-                Inches
+                Inches {""}
+                {inchesError && (
+                  <FormLabel
+                    theme={{
+                      color: "var(--error)",
+                      fontSizeSM: "15px",
+                      labelTop: "-1px",
+                      marginLeft: "15px",
+                    }}
+                  >
+                    {inchesError}
+                  </FormLabel>
+                )}
               </FormLabel>
             </FormGroup>
           </GridTwo>
@@ -435,33 +460,52 @@ export default function FormLogic({
             <FormLabel htmlForm='phoneNumber' theme={{ fontSizeSM: "17px" }}>
               Phone Number <AsteriskSpan> (optional) </AsteriskSpan>
             </FormLabel>
+
             <FormInput
-              type='text'
+              ref={formatPhoneRef}
+              type='tel'
               id='phoneNumber'
               name='phoneNumber'
               placeholder='(xxx) xxx - xxxx'
-              maxLength='10'
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              maxLength='16'
+              value={number}
+              onChange={(e) => {
+                formatPhoneNumber(formatPhoneRef, e.target.value);
+                setNumber(e.target.value);
+              }}
               theme={{ maxWidth: "340px", formItemHeight: "32.97px" }}
             />
           </FormGroup>
+
+          {numberError && (
+            <FormLabel
+              theme={{
+                color: "var(--error)",
+                fontSizeSM: "15px",
+                labelTop: "5px",
+                marginLeft: "15px",
+              }}
+            >
+              {numberError}
+            </FormLabel>
+          )}
+
           {/* Services */}
           <FormGroup>
             <FormLabel htmlForm='services' theme={{ fontSizeSM: "17px" }}>
               Services <AsteriskSpan> (optional) </AsteriskSpan>
             </FormLabel>
             <FormSelect
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setService(e.target.value)}
               theme={{ maxWidth: "340px", formItemHeight: "32.97px" }}
             >
-              {titleOptions.map((options) => (
+              {services.map((options) => (
                 <SelectOptions
                   id='services'
-                  value={options.title}
+                  value={options.service}
                   key={options.id}
                 >
-                  {options.title}
+                  {options.service}
                 </SelectOptions>
               ))}
             </FormSelect>
@@ -472,16 +516,16 @@ export default function FormLogic({
               Budget <AsteriskSpan> (optional) </AsteriskSpan>
             </FormLabel>
             <FormSelect
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setBudget(e.target.value)}
               theme={{ maxWidth: "340px", formItemHeight: "32.97px" }}
             >
-              {titleOptions.map((options) => (
+              {budgets.map((options) => (
                 <SelectOptions
                   id='budget'
-                  value={options.title}
+                  value={options.budget}
                   key={options.id}
                 >
-                  {options.title}
+                  {options.budget}
                 </SelectOptions>
               ))}
             </FormSelect>
@@ -492,7 +536,16 @@ export default function FormLogic({
         {formInputCheck(dataArray) ? (
           <>
             <CardSpacer />
-            {firstNameError || lastNameError || emailError ? null : (
+            {firstNameError ||
+            lastNameError ||
+            emailError ||
+            termsError ||
+            cityError ||
+            zipCodeError ||
+            feetError ||
+            inchesError ||
+            numberError ||
+            addressError ? null : (
               <SmallCard theme={{ maxWidth: "373px", height: "55px" }}>
                 <FormGroup>
                   <FormButton
@@ -520,9 +573,16 @@ export default function FormLogic({
                 first={firstName}
                 title={title}
                 email={email}
-                titleOptions={titleOptions}
                 country={country}
                 state={state}
+                address={address}
+                feet={feet}
+                inches={inches}
+                zipcode={zipCode}
+                number={number}
+                service={service}
+                budget={budget}
+                city={city}
               />
             </StyledModal>
           </>
@@ -576,7 +636,18 @@ export default function FormLogic({
               ) : null}
               <FormButton
                 type='submit'
-                disabled={!email || !firstName || !lastName || !verified}
+                disabled={
+                  !email ||
+                  !firstName ||
+                  !lastName ||
+                  !zipCode ||
+                  !address ||
+                  !terms ||
+                  !number ||
+                  !feet ||
+                  !inches ||
+                  !verified
+                }
                 theme={{ maxWidth: "340px", formItemHeight: "32.97px" }}
               >
                 Submit
