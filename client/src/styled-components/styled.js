@@ -101,9 +101,9 @@ export const PreviewForm = styled.div`
 
 // Modal
 export const StyledModal = Modal.styled`
-
-  width: 30rem;
-  height: 30rem;
+  position:relative;
+  width: 43rem;
+  height: 25rem;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -112,12 +112,13 @@ export const StyledModal = Modal.styled`
   border-radius:5px; 
 `;
 export const StyledCloseModal = styled.span`
-  position: relative;
-  bottom: 5px;
-  left: 420px;
+  position: absolute;
+  top: -12px;
+  right: 0;
   font-size: 50px;
   color: var(--light-gray-color);
   cursor: pointer;
+  z-index: 100;
 `;
 
 export const FadingBackground = styled(BaseModalBackground)`
