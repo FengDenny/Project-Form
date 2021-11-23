@@ -1,18 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from "react";
 import FormLogic from "../../components/form/FormLogic";
 import FormPreview from "../../components/form/FormPreview";
 import { useDispatch } from "react-redux";
-import {
-  setUserFirstName,
-  setUserLastName,
-  setUserTitle,
-  setUserEmail,
-  setUserCountry,
-  setUserStates,
-} from "../../redux/actions/formActions";
 import { SmallCard } from "../../styled-components/globalStyled";
 import { StyledModal, StyledCloseModal } from "../../styled-components/styled";
-import { titleOptions } from "../../components/form/data/selects";
+import {
+  titleOptions,
+  services,
+  budgets,
+} from "../../components/form/data/selects";
 import { countries } from "../../components/form/data/countries";
 import { states } from "../../components/form/data/states";
 import {
@@ -20,7 +17,25 @@ import {
   emailValidation,
   termsValidation,
   addressValidations,
+  heightValidation,
+  PhoneNumberValidation,
 } from "../../components/form/formValidation/FormValidation";
+
+import {
+  setUserFirstName,
+  setUserLastName,
+  setUserTitle,
+  setUserEmail,
+  setUserCountry,
+  setUserStates,
+  setUserCity,
+  setUserPhoneNumber,
+  setUserServices,
+  setUserBudget,
+  setUserAddress,
+  setUserZipCode,
+  setUserHeight,
+} from "../../redux/actions/formActions";
 export default function FormData() {
   // Redux dispatch
   const dispatch = useDispatch();
@@ -29,6 +44,8 @@ export default function FormData() {
   // Names
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
+  // Number
+  const [number, setNumber] = useState("");
   // title
   const [title, setTitle] = useState("");
   // country/region
@@ -43,6 +60,10 @@ export default function FormData() {
   const [zipCode, setZipCode] = useState("");
   // terms
   const [terms, setTerms] = useState(false);
+  // services
+  const [service, setService] = useState();
+  // budget
+  const [budget, setBudget] = useState();
   // Height
   const [feet, setFeet] = useState("");
   const [inches, setInches] = useState("");
@@ -54,8 +75,22 @@ export default function FormData() {
   const [addressError, setAddressError] = useState();
   const [cityError, setCityError] = useState();
   const [zipCodeError, setZipCodeError] = useState();
+  const [feetError, setFeetError] = useState();
+  const [inchesError, setInchesError] = useState();
+  const [numberError, setNumberError] = useState();
   // Required fields array checker
-  const dataArray = { title, firstName, lastName, email, country, state };
+  const dataArray = {
+    title,
+    firstName,
+    lastName,
+    email,
+    country,
+    state,
+    address,
+    city,
+    zipCode,
+    terms,
+  };
   const firstRender = useRef(true);
 
   useEffect(() => {
@@ -69,8 +104,11 @@ export default function FormData() {
     email && emailValidation(email, setEmailError);
     terms && termsValidation(terms, setTermsError);
     address && addressValidations(address, "Address", setAddressError);
-    city && addressValidations(city, "City", setCityError);
+    city && addressValidations(city, "city", setCityError);
     zipCode && addressValidations(zipCode, "zip code", setZipCodeError);
+    feet && heightValidation(feet, "Feet", setFeetError);
+    inches && heightValidation(inches, "Inches", setInchesError);
+    number && PhoneNumberValidation(number, "phone number", setNumberError);
   }, [
     lastName,
     firstName,
@@ -81,35 +119,71 @@ export default function FormData() {
     address,
     city,
     zipCode,
+    feet,
+    inches,
+    number,
   ]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    //
     dispatch(setUserFirstName(firstName));
     dispatch(setUserLastName(lastName));
     dispatch(setUserEmail(email));
+    dispatch(setUserCity(city));
+    dispatch(setUserAddress(address));
+    dispatch(setUserZipCode(zipCode));
+    dispatch(setUserHeight({ feet: feet, inches: inches }));
+    dispatch(setUserPhoneNumber(number));
+
+    // services
+    if (!service) {
+      dispatch(setUserServices("E-mail"));
+      setService("E-mail");
+    } else {
+      dispatch(setUserServices(service));
+    }
+
+    // budget
+    if (!budget) {
+      dispatch(setUserBudget("< $50"));
+      setBudget("< $50");
+    } else {
+      dispatch(setUserBudget(budget));
+    }
+
     // title
     if (!title) {
-      dispatch(setUserTitle("none"));
+      dispatch(setUserTitle("None"));
+      setTitle("None");
     } else {
       dispatch(setUserTitle(title));
     }
 
     // country
     if (!country) {
-      dispatch(setUserCountry(country[0]));
+      dispatch(setUserCountry("Afghanistan"));
+      setCountry("Afghanistan");
     } else {
       dispatch(setUserCountry(country));
     }
     // state
     if (!state) {
-      dispatch(setUserStates(states[0]));
+      dispatch(setUserStates("AL"));
+      setState("AL");
     } else {
       dispatch(setUserStates(state));
     }
 
-    console.log(firstName, lastName, title, email, country, states);
+    console.log(
+      firstName,
+      lastName,
+      title,
+      email,
+      country,
+      state,
+      address,
+      zipCode
+    );
   };
   // Form Preview Mode START
   const [modalOpen, setModalOpen] = useState(false);
@@ -181,6 +255,21 @@ export default function FormData() {
       zipCode={zipCode}
       setZipCode={setZipCode}
       zipCodeError={zipCodeError}
+      feetError={feetError}
+      inchesError={inchesError}
+      setFeet={setFeet}
+      setInches={setInches}
+      feet={feet}
+      inches={inches}
+      number={number}
+      setNumber={setNumber}
+      numberError={numberError}
+      services={services}
+      service={service}
+      setService={setService}
+      budgets={budgets}
+      budget={budget}
+      setBudget={setBudget}
     />
   );
 }
