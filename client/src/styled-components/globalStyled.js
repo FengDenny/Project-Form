@@ -158,5 +158,6 @@ export const HRLine = styled.hr`
   color: var(--light-gray-color);
   width: 100%;
   position: relative;
-  top: 10px;
+  margin-top: ${(props) => props.theme.marginTop};
+  top: ${(props) => props.theme.top};
 `;
