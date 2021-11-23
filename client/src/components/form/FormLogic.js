@@ -545,7 +545,9 @@ export default function FormLogic({
             feetError ||
             inchesError ||
             numberError ||
-            addressError ? null : (
+            addressError ||
+            !address ||
+            !city ? null : (
               <SmallCard theme={{ maxWidth: "373px", height: "55px" }}>
                 <FormGroup>
                   <FormButton
