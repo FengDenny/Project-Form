@@ -5,6 +5,7 @@ import { GlobalStyles } from "./styled-components/globalStyled";
 import { ModalProvider } from "styled-react-modal";
 import { FadingBackground } from "./styled-components/styled";
 import Home from "./pages/Home";
+import "./map.css";
 function App() {
   return (
     <ModalProvider backgroundComponent={FadingBackground}>
