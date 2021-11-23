@@ -50,13 +50,44 @@ export const addressValidations = (nameType, name, setError) => {
       ) {
         setError(`${name} can only be up to 40 alphanumeric characters.`);
       } else if (
-        name === "City" &&
+        name === "city" &&
         (nameType.length >= 40 || !nameType.match(cityRegex))
       ) {
         setError(`Invalid ${name}.`);
       } else if (name === "zip code" && !nameType.match(zipRegex)) {
         setError(`Invalid ${name}`);
       } else {
+        setError("");
+      }
+      break;
+    default:
+      break;
+  }
+};
+
+export const heightValidation = (nameType, name, setError) => {
+  const nonNegNumRegex = /^[0-9]+$/;
+  switch (nameType) {
+    case nameType:
+      if (nameType.length === 0) {
+        setError(`${name} is required.`);
+      } else if (!nameType.match(nonNegNumRegex)) {
+        setError(`Invalid ${name}. `);
+      } else {
+        setError("");
+      }
+      break;
+    default:
+      break;
+  }
+};
+
+export const PhoneNumberValidation = (nameType, name, setError) => {
+  switch (nameType) {
+    case nameType:
+      if (nameType.length < 10) {
+        setError(`Enter a 10 digit ${name}`);
+      } else if (nameType.length >= 10) {
         setError("");
       }
       break;
