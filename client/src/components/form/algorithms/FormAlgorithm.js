@@ -9,22 +9,12 @@ export const formInputCheck = (data) => {
     }
   }
 };
-export const formatPhoneNumber = (obj) => {
-  var numbers = obj.value.replace(/\D/g, ""),
+// Time Complexity: 0(n)
+export const formatPhoneNumber = (ref) => {
+  var numbers = ref.current.value.replace(/\D/g, ""),
     char = { 0: "(", 3: ") ", 6: " - " };
-
-  obj.value = "";
-
+  ref.current.value = "";
   for (var i = 0; i < numbers.length; i++) {
-    obj.value += (char[i] || " ") + numbers[i];
-  }
-};
-
-export const checkPhoneNumber = (input) => {
-  var formatted = input.value.replace(/\D/g, "");
-  if (formatted.length > 10) {
-    input.setCustomValidity("Phone number can only be 10 digits long");
-  } else {
-    input.setCustomValidity("");
+    ref.current.value += (char[i] || "") + numbers[i];
   }
 };
