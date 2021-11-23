@@ -17,6 +17,7 @@ import { ThemeProvider } from "styled-components";
 import { formInputCheck } from "./algorithms/FormAlgorithm";
 import { countries } from "../../components/form/data/countries";
 import { states } from "../../components/form/data/states";
+import { services, budgets } from "../../components/form/data/selects";
 export default function FormPreview(props) {
   var propsCheck = [
     props.last,
@@ -25,7 +26,18 @@ export default function FormPreview(props) {
     props.email,
     props.country,
     props.state,
+    props.address,
+    props.city,
+    props.zipcode,
+    props.feet,
+    props.inches,
+    props.number,
+    props.service,
+    props.budget,
   ];
+  // if serevice/budget is null use first ele
+  const budget = budgets[0];
+  const service = services[0];
 
   return (
     <Container>
@@ -43,7 +55,7 @@ export default function FormPreview(props) {
             </H1>
             <DisplayFlexMiddle
               theme={{
-                height: "15vh",
+                height: "300px",
                 alignItems: "flex-start",
                 flexDirection: "column",
                 justifyContentCenter: "center",
@@ -93,7 +105,7 @@ export default function FormPreview(props) {
                   </SpanColor>
                 ) : null}
               </Pragraph>
-              <HRLine></HRLine>
+              <HRLine theme={{ marginTop: "10px", top: "10px" }}></HRLine>
               <Pragraph
                 theme={{
                   fontSizeSM: "20px",
@@ -118,6 +130,32 @@ export default function FormPreview(props) {
                   top: "20px",
                 }}
               >
+                {props.address ? (
+                  <SpanColor>
+                    Address: <PrimarySpan>{props.address}</PrimarySpan>
+                  </SpanColor>
+                ) : null}
+              </Pragraph>
+              <Pragraph
+                theme={{
+                  fontSizeSM: "20px",
+                  fontWeight: "200",
+                  top: "20px",
+                }}
+              >
+                {props.city ? (
+                  <SpanColor>
+                    City: <PrimarySpan>{props.city}</PrimarySpan>
+                  </SpanColor>
+                ) : null}
+              </Pragraph>
+              <Pragraph
+                theme={{
+                  fontSizeSM: "20px",
+                  fontWeight: "200",
+                  top: "20px",
+                }}
+              >
                 {props.state ? (
                   <SpanColor>
                     State: <PrimarySpan>{props.state}</PrimarySpan>
@@ -125,6 +163,83 @@ export default function FormPreview(props) {
                 ) : (
                   <SpanColor>
                     State: <PrimarySpan>{states[0]}</PrimarySpan>
+                  </SpanColor>
+                )}
+              </Pragraph>
+              <Pragraph
+                theme={{
+                  fontSizeSM: "20px",
+                  fontWeight: "200",
+                  top: "20px",
+                }}
+              >
+                {props.zipcode ? (
+                  <SpanColor>
+                    Zip Code: <PrimarySpan>{props.zipcode}</PrimarySpan>
+                  </SpanColor>
+                ) : null}
+              </Pragraph>
+              <HRLine theme={{ marginTop: "15px", top: "10px" }}></HRLine>
+              <Pragraph
+                theme={{
+                  fontSizeSM: "20px",
+                  fontWeight: "200",
+                  top: "20px",
+                }}
+              >
+                {props.feet && props.inches ? (
+                  <SpanColor>
+                    Height:{" "}
+                    <PrimarySpan>
+                      {props.feet}' {props.inches}"
+                    </PrimarySpan>
+                  </SpanColor>
+                ) : null}
+              </Pragraph>
+              <Pragraph
+                theme={{
+                  fontSizeSM: "20px",
+                  fontWeight: "200",
+                  top: "20px",
+                }}
+              >
+                {props.number ? (
+                  <SpanColor>
+                    Phone Number: <PrimarySpan>{props.number}</PrimarySpan>
+                  </SpanColor>
+                ) : null}
+              </Pragraph>
+              <Pragraph
+                theme={{
+                  fontSizeSM: "20px",
+                  fontWeight: "200",
+                  top: "20px",
+                }}
+              >
+                {props.service ? (
+                  <SpanColor>
+                    Service: <PrimarySpan>{props.service}</PrimarySpan>
+                  </SpanColor>
+                ) : (
+                  <SpanColor>
+                    State: <PrimarySpan>{service.service}</PrimarySpan>
+                  </SpanColor>
+                )}
+              </Pragraph>
+              <Pragraph
+                theme={{
+                  fontSizeSM: "20px",
+                  fontWeight: "200",
+                  top: "20px",
+                }}
+              >
+                {props.budget ? (
+                  <SpanColor>
+                    Budget: <PrimarySpan>{props.budget}</PrimarySpan>
+                  </SpanColor>
+                ) : (
+                  <SpanColor>
+                    Budget: <PrimarySpan>{budget.budget}</PrimarySpan>
                   </SpanColor>
                 )}
               </Pragraph>
