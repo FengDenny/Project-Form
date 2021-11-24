@@ -1,4 +1,4 @@
-export const states = [
+export const stateArray = [
   "AL",
   "AK",
   "AS",
