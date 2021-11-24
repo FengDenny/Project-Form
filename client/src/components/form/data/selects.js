@@ -6,7 +6,7 @@ export const titleOptions = [
   { id: 5, title: "Retired" },
 ];
 
-export const services = [
+export const servicesOptions = [
   { id: 1, service: "E-mail" },
   { id: 2, service: "Facebook" },
   { id: 3, service: "Twitter" },
@@ -14,7 +14,7 @@ export const services = [
   { id: 5, service: "Personal Visit" },
 ];
 
-export const budgets = [
+export const budgetsOptions = [
   { id: 1, budget: "< $50" },
   { id: 2, budget: "$50 - $100" },
   { id: 3, budget: "> $100" },
