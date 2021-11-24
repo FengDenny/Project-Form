@@ -57,7 +57,7 @@ export default function FormLogic({
   countries,
   country,
   setCountry,
-  states,
+  stateArray,
   state,
   setState,
   address,
@@ -75,10 +75,10 @@ export default function FormLogic({
   setInches,
   feet,
   inches,
-  services,
+  servicesOptions,
+  budgetsOptions,
   service,
   setService,
-  budgets,
   budget,
   setBudget,
 }) {
@@ -328,7 +328,7 @@ export default function FormLogic({
                 onChange={(e) => setState(e.target.value)}
                 theme={{ maxWidth: "152px", formItemHeight: "32.97px" }}
               >
-                {states.map((state, index) => (
+                {stateArray.map((state, index) => (
                   <SelectOptions
                     id='countryRegion'
                     value={state}
@@ -499,9 +499,9 @@ export default function FormLogic({
               onChange={(e) => setService(e.target.value)}
               theme={{ maxWidth: "340px", formItemHeight: "32.97px" }}
             >
-              {services.map((options) => (
+              {servicesOptions.map((options) => (
                 <SelectOptions
-                  id='services'
+                  // id='services'
                   value={options.service}
                   key={options.id}
                 >
@@ -519,7 +519,7 @@ export default function FormLogic({
               onChange={(e) => setBudget(e.target.value)}
               theme={{ maxWidth: "340px", formItemHeight: "32.97px" }}
             >
-              {budgets.map((options) => (
+              {budgetsOptions.map((options) => (
                 <SelectOptions
                   id='budget'
                   value={options.budget}
@@ -645,9 +645,7 @@ export default function FormLogic({
                   !zipCode ||
                   !address ||
                   !terms ||
-                  !number ||
-                  !feet ||
-                  !inches ||
+                  !city ||
                   !verified
                 }
                 theme={{ maxWidth: "340px", formItemHeight: "32.97px" }}
