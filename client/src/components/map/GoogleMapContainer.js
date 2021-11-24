@@ -50,7 +50,7 @@ function GoogleMapContainer(props) {
 
   return (
     <Map
-      className='map-container'
+      className={`${props.isActive}`}
       google={google}
       zoom={12}
       style={mapStyles}
