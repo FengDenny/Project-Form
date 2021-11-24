@@ -15,7 +15,7 @@ export const setUserTitle = (title) => {
 };
 
 export const setUserHeight = (feet, inches) => {
-  return { type: "SET_USER_HEIGHT", feet: feet, inches: inches };
+  return { type: "SET_USER_HEIGHT", feet, inches };
 };
 
 export const setUserCountry = (country) => {
