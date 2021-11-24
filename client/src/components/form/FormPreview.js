@@ -17,9 +17,12 @@ import { PreviewForm } from "../../styled-components/styled";
 import { ThemeProvider } from "styled-components";
 import { formInputCheck } from "./algorithms/FormAlgorithm";
 import { countries } from "../../components/form/data/countries";
-import { states } from "../../components/form/data/states";
-import { services, budgets } from "../../components/form/data/selects";
-export default function FormPreview(props) {
+import { stateArray } from "../../components/form/data/states";
+import {
+  budgetsOptions,
+  servicesOptions,
+} from "../../components/form/data/selects";
+export default function FormPreview(props, { isActive }) {
   var propsCheck = [
     props.last,
     props.first,
@@ -37,8 +40,8 @@ export default function FormPreview(props) {
     props.budget,
   ];
   // if serevice/budget is null use first ele
-  const budget = budgets[0];
-  const service = services[0];
+  const budget = budgetsOptions[0];
+  const service = servicesOptions[0];
 
   return (
     <Container>
@@ -107,7 +110,9 @@ export default function FormPreview(props) {
                     </SpanColor>
                   ) : null}
                 </Pragraph>
-                <HRLine theme={{ marginTop: "10px", top: "10px" }}></HRLine>
+                <HRLine
+                  theme={{ marginTop: "10px", top: "10px", hrWidth: "100%" }}
+                ></HRLine>
                 <Pragraph
                   theme={{
                     fontSizeSM: "20px",
@@ -164,7 +169,7 @@ export default function FormPreview(props) {
                     </SpanColor>
                   ) : (
                     <SpanColor>
-                      State: <PrimarySpan>{states[0]}</PrimarySpan>
+                      State: <PrimarySpan>{stateArray[0]}</PrimarySpan>
                     </SpanColor>
                   )}
                 </Pragraph>
@@ -181,7 +186,9 @@ export default function FormPreview(props) {
                     </SpanColor>
                   ) : null}
                 </Pragraph>
-                <HRLine theme={{ marginTop: "15px", top: "10px" }}></HRLine>
+                <HRLine
+                  theme={{ marginTop: "15px", top: "10px", hrWidth: "100%" }}
+                ></HRLine>
                 <Pragraph
                   theme={{
                     fontSizeSM: "20px",
@@ -248,6 +255,7 @@ export default function FormPreview(props) {
               </DisplayFlexMiddle>
               {props.address && props.city ? (
                 <GoogleMapContainer
+                  isActive={"map-container"}
                   mapAddress={`${props.address} ${props.city}`}
                 />
               ) : null}
