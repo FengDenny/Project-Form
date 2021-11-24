@@ -1,6 +1,22 @@
 import styled from "styled-components";
 import Modal, { BaseModalBackground } from "styled-react-modal";
 
+// media queries
+
+const size = {
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
+};
+
+export const MediaQueries = (key) => {
+  return (style) => `@media (max-width: ${size[key]}){${style}}`;
+};
+
 // Hero
 export const Hero = styled.div`
   //   background: var(--primary-color);
@@ -13,8 +29,11 @@ export const HeroLogo = styled.h1`
 
 export const HeroCard = styled.div`
   position: relative;
-  margin-top: 67rem;
+  margin-top: 80rem;
   padding: 10px 0;
+  ${MediaQueries("tablet")`
+  margin-top: 90rem;
+  `}
 `;
 // Form
 export const FormGroup = styled.form`
@@ -110,6 +129,13 @@ export const StyledModal = Modal.styled`
   opacity: ${(props) => props.opacity};
   transition : all 0.3s ease-in-out;
   border-radius:5px; 
+
+  ${MediaQueries("tablet")`
+  width: 35rem;
+  `}
+  ${MediaQueries("mobileL")`
+  width: 25rem;
+  `}
 `;
 export const StyledCloseModal = styled.span`
   position: absolute;
@@ -124,4 +150,30 @@ export const StyledCloseModal = styled.span`
 export const FadingBackground = styled(BaseModalBackground)`
   opacity: ${(props) => props.opacity};
   transition: all 0.3s ease-in-out;
+`;
+
+// Form Result
+export const ResultVerification = styled.div`
+  background-color: #fff;
+  width: 100%;
+  height: 600px;
+  margin-top: 1250px;
+  position: relative;
+`;
+
+// Footer
+
+export const FooterContainer = styled.footer`
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  width: 100%;
+  height: 150px;
+  margin-top: 290px;
+`;
+
+// banner
+export const BannerContainer = styled.div`
+  background: var(--primary-color);
+  height: 4rem;
+  padding: 5px;
 `;

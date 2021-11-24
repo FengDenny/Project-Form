@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { MediaQueries } from "./styled";
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -9,8 +10,11 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 html, body{
-    background:var(--bg-color)
+    background:var(--bg-color);
+  
+    
 }
+
 
 :root{
     --primary-font: 'Lora', serif;
@@ -54,7 +58,13 @@ export const theme = {
   labelTop: "0",
   gridPadding: "25px 0 0 0;",
   gridGap: "5px",
+  hrWidth: "100%",
+  lineHeight: "0px",
 };
+
+export const Main = styled.main`
+  flex-grow: 1;
+`;
 
 export const Container = styled.div`
   max-width: 1400px;
@@ -105,10 +115,17 @@ export const Pragraph = styled.p`
   font-weight: ${(props) => props.theme.fontWeight};
   align-self: ${(props) =>
     props.center ? props.theme.alignCenter : props.theme.alignStart};
+  line-height: ${(props) => props.theme.lineHeight};
 `;
 
 export const Header = styled.header`
   display: block;
+  position: relative;
+  top: 20vh;
+  ${MediaQueries("tablet")`
+  position: absolute;
+  top: 70px;
+  `}
 `;
 
 export const Span = styled.span`
@@ -117,6 +134,10 @@ export const Span = styled.span`
 
 export const SpanColor = styled.span`
   color: ${(props) => props.theme.color};
+  display: flex;
+  ${MediaQueries("mobileL")`
+  font-size:17px;
+  `}
 `;
 
 export const AsteriskSpan = styled.span`
@@ -124,6 +145,7 @@ export const AsteriskSpan = styled.span`
 `;
 export const PrimarySpan = styled.span`
   color: var(--primary-color);
+  padding-left: 5px;
 `;
 
 // Card
@@ -142,6 +164,10 @@ export const SmallCard = styled(Card)`
   height: ${(props) => props.theme.height};
 `;
 
+export const ResultCard = styled(SmallCard)`
+  ${MediaQueries("tablet")` width:95%`}
+`;
+
 export const CardSpacer = styled.div`
   margin-top: 5px;
 `;
@@ -153,12 +179,22 @@ export const GridTwo = styled.div`
   width: 100%;
   padding: ${(props) => props.theme.gridPadding};
   grid-gap: ${(props) => props.theme.gridGap};
+
+  ${MediaQueries("mobileL")`
+    padding: 22px 0 0 10px !important;
+  `}
 `;
 
 export const HRLine = styled.hr`
   color: var(--light-gray-color);
-  width: 100%;
+  width: ${(props) => props.theme.hrWidth};
   position: relative;
   margin-top: ${(props) => props.theme.marginTop};
   top: ${(props) => props.theme.top};
+`;
+
+export const Navigate = styled.a`
+  color: var(--primary-color);
+  font-size: 35px;
+  padding-left: 30px;
 `;
