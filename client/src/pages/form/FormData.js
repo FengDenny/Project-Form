@@ -7,11 +7,12 @@ import { SmallCard } from "../../styled-components/globalStyled";
 import { StyledModal, StyledCloseModal } from "../../styled-components/styled";
 import {
   titleOptions,
-  services,
-  budgets,
+  servicesOptions,
+  budgetsOptions,
 } from "../../components/form/data/selects";
+
 import { countries } from "../../components/form/data/countries";
-import { states } from "../../components/form/data/states";
+import { stateArray } from "../../components/form/data/states";
 import {
   nameValidation,
   emailValidation,
@@ -60,7 +61,7 @@ export default function FormData() {
   const [zipCode, setZipCode] = useState("");
   // terms
   const [terms, setTerms] = useState(false);
-  // services
+  // servicesOptions
   const [service, setService] = useState();
   // budget
   const [budget, setBudget] = useState();
@@ -115,7 +116,7 @@ export default function FormData() {
     email,
     terms,
     country,
-    states,
+    stateArray,
     address,
     city,
     zipCode,
@@ -132,10 +133,10 @@ export default function FormData() {
     dispatch(setUserCity(city));
     dispatch(setUserAddress(address));
     dispatch(setUserZipCode(zipCode));
-    dispatch(setUserHeight({ feet: feet, inches: inches }));
+    dispatch(setUserHeight(feet, inches));
     dispatch(setUserPhoneNumber(number));
 
-    // services
+    // servicesOptions
     if (!service) {
       dispatch(setUserServices("E-mail"));
       setService("E-mail");
@@ -242,7 +243,7 @@ export default function FormData() {
       countries={countries}
       country={country}
       setCountry={setCountry}
-      states={states}
+      stateArray={stateArray}
       state={state}
       setState={setState}
       address={address}
@@ -264,10 +265,10 @@ export default function FormData() {
       number={number}
       setNumber={setNumber}
       numberError={numberError}
-      services={services}
+      servicesOptions={servicesOptions}
       service={service}
       setService={setService}
-      budgets={budgets}
+      budgetsOptions={budgetsOptions}
       budget={budget}
       setBudget={setBudget}
     />
