@@ -2,7 +2,7 @@ const INITIAL_STATE = {
   firstName: "",
   lastName: "",
   title: "",
-  height: { feet: "", inches: "" },
+  height: [{ feet: "", inches: "" }],
   phoneNumber: "",
   email: "",
   country: "",
@@ -23,7 +23,10 @@ const formReducer = (state = INITIAL_STATE, action) => {
     case "SET_USER_TITLE":
       return { ...state, title: action.title };
     case "SET_USER_HEIGHT":
-      return { ...state, height: action.height };
+      return {
+        ...state,
+        height: [{ feet: action.feet, inches: action.inches }],
+      };
     case "SET_USER_PHONE_NUMBER":
       return { ...state, phoneNumber: action.phoneNumber };
     case "SET_USER_EMAIL":
@@ -33,15 +36,15 @@ const formReducer = (state = INITIAL_STATE, action) => {
     case "SET_USER_STATES":
       return { ...state, states: action.states };
     case "SET_USER_CITY":
-      return { ...state, states: action.city };
+      return { ...state, city: action.city };
     case "SET_USER_SERVICES":
-      return { ...state, states: action.services };
+      return { ...state, services: action.services };
     case "SET_USER_BUDGET":
-      return { ...state, states: action.budget };
+      return { ...state, budget: action.budget };
     case "SET_USER_ADDRESS":
-      return { ...state, states: action.address };
+      return { ...state, address: action.address };
     case "SET_USER_ZIPCODE":
-      return { ...state, states: action.zipcode };
+      return { ...state, zipcode: action.zipcode };
     default:
       return state;
   }
