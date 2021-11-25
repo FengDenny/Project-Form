@@ -57,10 +57,10 @@ export default function HeroSection() {
                       fontWeight: "200",
                     }}
                   >
-                    This project goal is to create a form that is easy and
-                    simple to use. One core feature is the ability to preview
-                    form before submission! After submitting, just scroll down
-                    to see the form results! It's that simple!
+                    The goal of this project is to create a form that is easy
+                    and simple to use. One core feature is the ability to
+                    preview form before submission. After submitting, just
+                    scroll down to see the form results. It's that simple!
                   </Pragraph>
                 </Header>
                 <HeroCard>
