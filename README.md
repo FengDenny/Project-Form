@@ -14,7 +14,7 @@ cd into client folder and install all the required packages for this project usi
 
 ### `npm start`
 
-To run this project in localhose, simply cd into "client" folder and run `npm start`
+To run this project in localhost, simply cd into "client" folder and run `npm start`
 
 ## Project Hosted on GitHub pages
 
